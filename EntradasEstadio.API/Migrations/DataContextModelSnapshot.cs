@@ -30,10 +30,10 @@ namespace EntradasEstadio.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Access")
+                    b.Property<int?>("Access")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UseDate")
+                    b.Property<DateTime?>("UseDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Used")

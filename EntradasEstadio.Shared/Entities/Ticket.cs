@@ -7,10 +7,10 @@ namespace EntradasEstadio.Shared.Entities
     {
         public int Id { get; set; }
 
-        public DateTime UseDate { get; set; }
+        public DateTime? UseDate { get; set; } = null;
 
         public bool Used { get; set; }
 
-        public AccessGate Access { get; set; }
+        public AccessGate? Access { get; set; } = null;
     }
 }

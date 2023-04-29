@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntradasEstadio.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230429042136_InitialDB")]
+    [Migration("20230429064609_InitialDB")]
     partial class InitialDB
     {
         /// <inheritdoc />
@@ -33,10 +33,10 @@ namespace EntradasEstadio.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Access")
+                    b.Property<int?>("Access")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UseDate")
+                    b.Property<DateTime?>("UseDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Used")
