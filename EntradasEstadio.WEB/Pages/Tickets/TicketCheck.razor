@@ -1,0 +1,135 @@
+﻿@page "/ticket/check"
+@inject IRepository repository
+@inject NavigationManager navigationManager
+@inject SweetAlertService sweetAlertService
+
+<div class="card">
+    <div class="card-header">
+        <span>
+            <i class="oi oi-globe"></i> Validar boletas
+        </span>
+    </div>
+    <div class="card-body">
+        <div class="mb-2" style="display: flex; flex-wrap:wrap; align-items: center;">
+            <div>
+                <input style="width: 400px;" type="text" class="form-control" id="titulo" placeholder="Ingrese ID de boleta" @bind-value="Filter" />
+            </div>
+            <div class="mx-1">
+                <button type="button" class="btn btn-outline-primary" @onclick="LoadAsync"><i class="oi oi-layers" /> Consultar</button>
+            </div>
+        </div>
+    </div>
+    @if (tickets.Id > 0 && tickets.Id <= 50000)
+    {
+        <div class="card-body">
+            <MudText Typo="Typo.h6">Registrar ingreso</MudText>
+            <div class="mb-3">
+                <MudTextField Label="Entrada" 
+                          @bind-Value="date"
+                          Variant="Variant.Outlined"
+                          Placeholder="Puerta de acceso"
+                          IconSize="Size.Large"
+                          Margin="Margin.Dense"
+                              class="m-1">
+                </MudTextField>
+                <MudTextField Label="Fecha"
+                          @bind-Value="date"
+                          Variant="Variant.Outlined"
+                          Placeholder="Fecha"
+                          IconSize="Size.Large"
+                          Margin="Margin.Dense"
+                              class="m-1">
+                </MudTextField>
+                <MudTextField Label="Hora"
+                          @bind-Value="hour"
+                          Variant="Variant.Outlined"
+                          Placeholder="Hora"
+                          IconSize="Size.Large"
+                          Margin="Margin.Dense"
+                              class="m-1">
+                </MudTextField>
+                <MudButton Variant="Variant.Filled"
+                       Color="Color.Info"lled"
+                       OnClick="@(() => RegisterEntrance())">
+                    
+                </MudButton>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private Ticket tickets = new();
+    private DateTime? date;
+    private TimeSpan? hour;
+    public bool used { get; set; } = false;
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string Filter { get; set; } = string.Empty;
+
+    private async Task LoadAsync()
+    {
+        if (string.IsNullOrEmpty(Filter))
+        {
+            var toast = sweetAlertService.Mixin(new SweetAlertOptions
+                {
+                    Toast = true,
+                    Position = SweetAlertPosition.TopEnd,
+                    ShowConfirmButton = false,
+                    Timer = 4000
+                });
+            await toast.FireAsync(icon: SweetAlertIcon.Success, message: "Boleta no valida");
+        }
+
+        int ticket = Convert.ToInt32(Filter);
+
+        var responseHppt = await repository.GetAsync<Ticket>($"/api/tickets/{ticket}");
+
+        tickets = responseHppt.Response!;
+
+        var toast2 = sweetAlertService.Mixin(new SweetAlertOptions
+            {
+                Toast = true,
+                Position = SweetAlertPosition.TopEnd,
+                ShowConfirmButton = false,
+                Timer = 4000
+            });
+        await toast2.FireAsync(icon: SweetAlertIcon.Success, message: "Boleta valida");
+    }
+
+    private async Task RegisterEntrance()
+    {
+        if (date is null || hour is null || !used)
+        {
+            var toast3 = sweetAlertService.Mixin(new SweetAlertOptions
+                {
+                    Toast = true,
+                    Position = SweetAlertPosition.TopEnd,
+                    ShowConfirmButton = false,
+                    Timer = 4000
+                });
+            await toast3.FireAsync(icon: SweetAlertIcon.Success, message: "Todos los campos deben estar diligenciados");
+        }
+
+        tickets.UseDate = date + hour;
+        tickets.Used = used;
+
+        var httpResponse = await repository.PutAsync("/api/tickets", tickets);
+       
+        var toast4 = sweetAlertService.Mixin(new SweetAlertOptions
+            {
+                Toast = true,
+                Position = SweetAlertPosition.TopEnd,
+                ShowConfirmButton = false,
+                Timer = 4000
+            });
+        await toast4.FireAsync(icon: SweetAlertIcon.Success, message: "Registro exitoso");
+        //tickets = new Tickets();
+        //dateRegister = null;
+        //hourRegister = null;
+        //isUsed = false;
+        //DoorSelected(-1);
+        //Filter = "";
+    }
+}

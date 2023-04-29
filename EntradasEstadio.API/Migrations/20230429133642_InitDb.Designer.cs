@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntradasEstadio.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230429064609_InitialDB")]
-    partial class InitialDB
+    [Migration("20230429133642_InitDb")]
+    partial class InitDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

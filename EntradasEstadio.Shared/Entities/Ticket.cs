@@ -1,5 +1,4 @@
 ﻿using EntradasEstadio.Shared.Enums;
-using System.ComponentModel.DataAnnotations;
 
 namespace EntradasEstadio.Shared.Entities
 {

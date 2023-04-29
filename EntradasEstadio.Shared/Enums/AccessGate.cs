@@ -2,7 +2,6 @@
 {
     public enum AccessGate
     {
-        Nulo,
         Norte,
         Sur,
         Oriental,

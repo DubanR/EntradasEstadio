@@ -1,6 +1,8 @@
 ﻿using EntradasEstadio.API.Data;
+using EntradasEstadio.Shared.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace EntradasEstadio.API.Controllers
 {
@@ -48,5 +50,22 @@ namespace EntradasEstadio.API.Controllers
                 return BadRequest(exception.Message);
             }
         }
+
+        [HttpPut]
+        public async Task<ActionResult> Put(Ticket ticket)
+        {
+            try
+            {
+                _context.Update(ticket);
+                await _context.SaveChangesAsync();
+                return Ok(ticket);
+            }
+
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
     }
 }
+

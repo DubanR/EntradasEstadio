@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntradasEstadio.Shared", "EntradasEstadio.Shared\EntradasEstadio.Shared.csproj", "{CABBC869-6F4C-491B-B768-4113EDF22712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntradasEstadio.Shared", "EntradasEstadio.Shared\EntradasEstadio.Shared.csproj", "{CABBC869-6F4C-491B-B768-4113EDF22712}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntradasEstadio.API", "EntradasEstadio.API\EntradasEstadio.API.csproj", "{8ACEC315-8056-45F0-A8C3-88AF222D523A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntradasEstadio.API", "EntradasEstadio.API\EntradasEstadio.API.csproj", "{8ACEC315-8056-45F0-A8C3-88AF222D523A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntradasEstadio.WEB", "EntradasEstadio.WEB\EntradasEstadio.WEB.csproj", "{B65C1C72-77D5-4359-9021-821942B9D918}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntradasEstadio.WEB", "EntradasEstadio.WEB\EntradasEstadio.WEB.csproj", "{B65C1C72-77D5-4359-9021-821942B9D918}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

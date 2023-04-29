@@ -1,8 +1,7 @@
 ﻿using EntradasEstadio.Shared.Entities;
-using EntradasEstadio.Shared.Enums;
-using EntradasEstadio.API.Data;
 
-namespace Subastongo.API.Data
+
+namespace EntradasEstadio.API.Data
 {
     public class SeedDb
     {
@@ -25,21 +24,11 @@ namespace Subastongo.API.Data
             {
                 for (int i = 1; i <= 50000; i++)
                 {
-                    await AddTicketsAsync(false);
+                    _context.Tickets.Add(new Ticket { Used = false });
                 }
 
                 await _context.SaveChangesAsync();
             }
-        }
-
-        private async Task AddTicketsAsync(bool used)
-        {
-            Ticket ticket = new()
-            {
-                Used  = used,
-            };
-
-            _context.Tickets.Add(ticket);
         }
 
     }

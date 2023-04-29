@@ -10,5 +10,11 @@ namespace EntradasEstadio.API.Data
         }
 
         public DbSet<Ticket> Tickets { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+        }
     }
 }

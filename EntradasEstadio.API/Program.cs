@@ -1,6 +1,5 @@
 using EntradasEstadio.API.Data;
 using Microsoft.EntityFrameworkCore;
-using Subastongo.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,5 +35,12 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)
+    .AllowCredentials());
+
 
 app.Run();
